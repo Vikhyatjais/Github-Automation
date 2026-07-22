@@ -118,13 +118,44 @@
         }
 
         .hero-container {
-            max-width: 1000px;
+            max-width: 1100px;
             width: 100%;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 4rem;
+            align-items: center;
+            margin-top: 4rem;
+        }
+
+        .hero-content {
             display: flex;
             flex-direction: column;
             align-items: flex-start;
             gap: 1.5rem;
-            margin-top: 4rem;
+        }
+
+        .hero-status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(99, 102, 241, 0.06);
+            border: 1px solid rgba(99, 102, 241, 0.15);
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #10b981;
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 12px #10b981;
+            animation: pulse 2s infinite;
         }
 
         .hero-pre {
@@ -159,6 +190,77 @@
             color: var(--text-secondary);
             margin-bottom: 1rem;
         }
+
+        /* Hero Visual Code Block */
+        .hero-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .visual-box {
+            position: relative;
+            width: 100%;
+            max-width: 380px;
+            height: 340px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(99, 102, 241, 0.03) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 24px 48px rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .visual-box::before {
+            content: '';
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            background: conic-gradient(from 0deg at 50% 50%, transparent 0deg, var(--accent) 180deg, transparent 360deg);
+            animation: rotate 12s linear infinite;
+            opacity: 0.25;
+        }
+
+        .visual-inner {
+            position: absolute;
+            inset: 2px;
+            background: var(--bg-card);
+            border-radius: 14px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 2rem;
+            gap: 1.5rem;
+        }
+
+        .visual-header {
+            display: flex;
+            gap: 0.4rem;
+        }
+
+        .visual-header span {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .visual-header .dot-1 { background-color: #ef4444; }
+        .visual-header .dot-2 { background-color: #eab308; }
+        .visual-header .dot-3 { background-color: #22c55e; }
+
+        .visual-code {
+            font-family: monospace;
+            font-size: 0.85rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+        }
+
+        .visual-code span.keyword { color: #f43f5e; }
+        .visual-code span.property { color: #38bdf8; }
+        .visual-code span.string { color: #10b981; }
 
         /* Buttons & Call To Actions */
         .hero-cta {
@@ -219,7 +321,29 @@
             pointer-events: none;
         }
 
+        /* Animations */
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
+
         /* Responsive adjustments */
+        @media (max-width: 968px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            .hero-visual {
+                display: none;
+            }
+        }
+
         @media (max-width: 768px) {
             header {
                 padding: 1.25rem 1.5rem;
@@ -255,15 +379,40 @@
     <main>
         <section class="hero" id="home">
             <div class="hero-container">
-                <span class="hero-pre">Hi there, I'm</span>
-                <h1 class="hero-name">Alex Morgan</h1>
-                <h2 class="hero-tagline">I engineer high-performance visual interfaces.</h2>
-                <p class="hero-description">
-                    I'm a frontend developer specializing in building exceptional, accessible, and fast digital experiences. Currently crafting the future of interactive design systems and sleek web applications.
-                </p>
-                <div class="hero-cta">
-                    <a href="#work" class="btn btn-primary">View My Work</a>
-                    <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+                <div class="hero-content">
+                    <div class="hero-status-badge">
+                        <span class="status-dot"></span> Available for frontend roles
+                    </div>
+                    <span class="hero-pre">Hi there, I'm</span>
+                    <h1 class="hero-name">Alex Morgan</h1>
+                    <h2 class="hero-tagline">I engineer high-performance visual interfaces.</h2>
+                    <p class="hero-description">
+                        I'm a frontend developer specializing in building exceptional, accessible, and fast digital experiences. Currently crafting the future of interactive design systems and sleek web applications.
+                    </p>
+                    <div class="hero-cta">
+                        <a href="#work" class="btn btn-primary">View My Work</a>
+                        <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+                    </div>
+                </div>
+                <div class="hero-visual" aria-hidden="true">
+                    <div class="visual-box">
+                        <div class="visual-inner">
+                            <div class="visual-header">
+                                <span class="dot-1"></span>
+                                <span class="dot-2"></span>
+                                <span class="dot-3"></span>
+                            </div>
+                            <div class="visual-code">
+                                <p><span class="keyword">const</span> developer = {</p>
+                                <p>&nbsp;&nbsp;name: <span class="string">'Alex Morgan'</span>,</p>
+                                <p>&nbsp;&nbsp;role: <span class="string">'Frontend Engineer'</span>,</p>
+                                <p>&nbsp;&nbsp;specialty: <span class="string">'Design Systems'</span>,</p>
+                                <p>&nbsp;&nbsp;passion: <span class="string">'Performance & UX'</span>,</p>
+                                <p>&nbsp;&nbsp;lovesCode: <span class="keyword">true</span></p>
+                                <p>};</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
