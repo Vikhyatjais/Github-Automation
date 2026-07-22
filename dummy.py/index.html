@@ -321,6 +321,93 @@
             pointer-events: none;
         }
 
+        /* About Section */
+        .about {
+            padding: 8rem 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .about-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 3rem;
+            color: var(--text-primary);
+        }
+
+        .about-title span {
+            color: var(--accent);
+        }
+
+        .about-container {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-bio {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            color: var(--text-secondary);
+            font-size: clamp(1rem, 2.5vw, 1.1rem);
+            line-height: 1.7;
+        }
+
+        .about-bio strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .about-img-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 320px;
+            aspect-ratio: 1;
+            margin: 0 auto;
+        }
+
+        .about-img-placeholder {
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(99, 102, 241, 0.15) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            color: var(--text-secondary);
+            position: relative;
+            z-index: 2;
+            overflow: hidden;
+        }
+
+        .about-img-placeholder svg {
+            width: 40px;
+            height: 40px;
+            color: var(--accent);
+        }
+
+        .about-img-border {
+            position: absolute;
+            inset: -8px;
+            border: 2px solid rgba(99, 102, 241, 0.2);
+            border-radius: 16px;
+            z-index: 1;
+            pointer-events: none;
+            transition: var(--transition);
+        }
+
+        .about-img-wrapper:hover .about-img-border {
+            transform: translate(6px, 6px);
+            border-color: rgba(99, 102, 241, 0.4);
+        }
+
         /* Animations */
         @keyframes rotate {
             from { transform: rotate(0deg); }
@@ -341,6 +428,13 @@
             }
             .hero-visual {
                 display: none;
+            }
+            .about-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            .about-img-wrapper {
+                order: -1;
             }
         }
 
@@ -413,6 +507,33 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="about" id="about">
+            <h2 class="about-title">About Me<span>.</span></h2>
+            <div class="about-container">
+                <div class="about-bio">
+                    <p>
+                        I'm a frontend engineer with over five years of experience crafting interfaces that feel as good as they look. I thrive at the intersection of <strong>meticulous design</strong> and <strong>high-performance engineering</strong>, turning complex ideas into intuitive digital realities.
+                    </p>
+                    <p>
+                        Throughout my journey, I've worked with diverse teams to develop design systems, architect robust React applications, and optimize rendering pipelines for flawless responsiveness. I believe in writing semantic, accessible markup and scalable, clean stylesheets.
+                    </p>
+                    <p>
+                        When I'm not digging through console logs or fine-tuning Bezier curves, you'll find me exploring generative art, contributing to open-source projects, or scouting for the perfect espresso.
+                    </p>
+                </div>
+                <div class="about-img-wrapper">
+                    <div class="about-img-placeholder">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+                        </svg>
+                        <span style="font-size: 0.9rem; font-family: var(--font-display);">Alex Morgan</span>
+                    </div>
+                    <div class="about-img-border"></div>
                 </div>
             </div>
         </section>
